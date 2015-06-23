@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="scotchProduct">
+<head>
+   <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <title><%= title %></title>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script type="text/javascript" src="application.js"></script>
+    <!--<script type="text/javascript" src="/lib/angular/angular.js"></script>-->
+    <script src="../js/respond.min.js"></script>
+
+    <script src="../js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="../js/services/products.js"></script> <!-- load our product service -->
+    <script src="../js/core.js"></script> <!-- load our main application -->
+
+    <!--google fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body ng-controller="mainController">
+<section id="wrapper">
+
+<header>
+    <% include header %>
+</header>
+<nav><% include nav %></nav>
+
+<section id="content">
+
+<div id="product-list">
+            <div class="categories">
+               
+                        <!-- LOOP OVER THE Products IN $scope.products -->
+                <div class="checkbox" ng-repeat="product in products">
+                    <div class="prod">
+                    <label>
+                        <p> {{product.name}}</p>
+                        <p> {{product.price}}</p>
+                        <p> {{product.text}}</p>
+                        <img src="{{product.photo}}"> 
+                        <p> {{product.category}}</p>
+                        <p>{{product._id}}</p>
+                        <input type="checkbox" ng-click="deleteProduct(product._id)"> 
+                        <a href="/product/p?p={{product._id}}">Test Button</a>
+                        <!-- {{ product.text }} -->
+                    </label>
+                    </div>
+                </div>
+                 
+
+                
+
+<!--                <div ng-repeat="product in products">
+                    <ol>
+                        <li>{{product.name}} </li>
+                        <li>{{product.price}}</li>
+                        <li>{{product.text}}<li>
+                        <li>{{product._id}}</li>
+                        <li><img src="{{product.photo}}"></li>
+                    </ol>   
+                </div> -->
+
+                <p class="text-center" ng-show="loading">
+                    <span class="fa fa-spinner fa-spin fa-3x"></span>
+                </p>
+
+            </div><!--end of categories-->
+        </div><!--end of product-list-->
+
+
+
+</section><!--end of content-->
+<footer>
+    <p>&amp;Copyright</p>
+</footer><!--end of footer-->
+</section><!--end of wrapper-->
+</body>
+</html>
